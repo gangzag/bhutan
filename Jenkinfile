@@ -1,19 +1,16 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'ENV', defaultValue: 'dev', description: 'Deployment Environment')
+    }
+
     stages {
 
-        stage('Clone Repository') {
+        stage('Print Environment') {
             steps {
-                git 'https://github.com/git/git.git'
-            }
-        }
-
-        stage('Verify Files') {
-            steps {
-                sh 'ls -lrt'
+                echo "Deploying to ${params.ENV}"
             }
         }
     }
 }
-
