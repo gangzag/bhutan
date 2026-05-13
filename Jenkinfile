@@ -1,16 +1,44 @@
+8. Pipeline with Conditional Execution
+Purpose
+
+Understand:
+
+Conditions
+Branching logic
 pipeline {
     agent any
 
     parameters {
-        string(name: 'ENV', defaultValue: 'dev', description: 'Deployment Environment')
+        choice(name: 'ACTION', choices: ['build', 'deploy'], description: 'Choose action')
     }
 
     stages {
 
-        stage('Print Environment') {
+        stage('Build') {
+            when {
+                expression {
+                    params.ACTION == 'build'
+                }
+            }
+
             steps {
-                echo "Deploying to ${params.ENV}"
+                echo 'Building application...'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                expression {
+                    params.ACTION == 'deploy'
+                }
+            }
+
+            steps {
+                echo 'Deploying application...'
             }
         }
     }
 }
+
+
+
