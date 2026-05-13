@@ -4,6 +4,7 @@ pipeline{
     stage('hello') {
         steps {
             echo "demo of pipeline from poll scm."
+            echo "second pipeline test."
          }
      }
    }
