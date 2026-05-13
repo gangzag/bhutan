@@ -1,10 +1,3 @@
-8. Pipeline with Conditional Execution
-Purpose
-
-Understand:
-
-Conditions
-Branching logic
 pipeline {
     agent any
 
